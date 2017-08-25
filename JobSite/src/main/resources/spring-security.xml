@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:security="http://www.springframework.org/schema/security"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans 
+      http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/security 
+   http://www.springframework.org/schema/security/spring-security.xsd">
+  
+ <!-- This is where we configure Spring-Security  -->
+ <security:http auto-config="true" use-expressions="true">
+ <security:csrf disabled="true"/> <!-- KALDIRMAYI DENE -->
+ 
+  <security:intercept-url pattern="beko/" access="permitAll"/>
+  <security:intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
+  <security:intercept-url pattern="/ilanlar" access="hasRole('ROLE_ADMIN')"/>
+  <security:intercept-url pattern="/people" access="hasRole('ROLE_ADMIN')"/>
+  <security:intercept-url pattern="/karaliste" access="hasRole('ROLE_ADMIN')"/>
+  <security:intercept-url pattern="/ilanver" access="hasRole('ROLE_ADMIN')"/>
+  <security:intercept-url pattern="/ilan/**" access="hasRole('ROLE_ADMIN')"/>
+  <security:intercept-url pattern="/adminProfile/**" access="hasRole('ROLE_ADMIN')"/>
+  <security:intercept-url pattern="/addAdvert" access="hasRole('ROLE_ADMIN')"/>
+  <security:intercept-url pattern="/addBlackList" access="hasRole('ROLE_ADMIN')"/>
+  <security:intercept-url pattern="/accept/**" access="hasRole('ROLE_ADMIN')"/>
+  <security:intercept-url pattern="/common" access="hasRole('ROLE_USER')"/>
+   
+  <security:form-login 
+  		login-page="/auth/login"
+  		default-target-url="/admin" 
+  		login-processing-url="/j_spring_security_check" 
+  		authentication-failure-url="/auth/login" 
+  		username-parameter="username" 
+  		password-parameter="password"/>
+
+  <security:logout
+    invalidate-session="true"
+    logout-success-url="/"
+    logout-url="/auth/logout"/>
+  
+ </security:http>
+  
+ <!-- 
+   For authentication:
+   user-search-filter: the attribute name that contains the user name 
+      user-search-base: the base path where to find user information
+       
+      For authorization:
+      group-search-filter: the attribute name that contains the full dn of a user
+      group-search-base: the base path where to find role information
+      group-role-attribute: the attribute name that contains the role type
+      role-prefix: the prefix to be added when retrieving role values
+       
+      For server access:
+      manager-dn: the full dn of the person that has access to an LDAP server
+      manager-password: the password of the person that has access to an LDAP server
+ -->
+ <security:authentication-manager>
+         <security:ldap-authentication-provider 
+           user-search-filter="(uid={0})"
+           user-search-base="ou=users"
+           group-search-filter="(uniqueMember={0})"
+           group-search-base="ou=groups"
+           group-role-attribute="cn"
+           role-prefix="ROLE_">
+         </security:ldap-authentication-provider>
+ </security:authentication-manager>
+ 
+ <security:ldap-server url="ldap://localhost:10389/o=beko" manager-dn="uid=admin,ou=system" manager-password="secret" />
+</beans>
+

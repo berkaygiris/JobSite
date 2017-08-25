@@ -1,0 +1,5 @@
+linkedin\LinkedinAuth.class
+domain\LnkdnProfile.class
+com\java\loginldap\WebConfig.class
+repositories\ProfileRepository.class
+com\java\loginldap\Application.class
