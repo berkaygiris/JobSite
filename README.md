@@ -21,10 +21,23 @@ JobSite is a project I made in the summer of 2017 to improve my web skills. It i
         - Add professional skills
         - Browse jobs and apply to them
 
- [Technologies](https://lh5.googleusercontent.com/ZbsZnUMnOaL4vSfw3yWaq09lQ9mloZx3E883aTFqpFH4Sd5z67pUI22bdlpnWHz1MS9nn8QtDU1M8D8=w1920-h901) 
-
 
 # Technologies!
-![Technologies](https://lh5.googleusercontent.com/ZbsZnUMnOaL4vSfw3yWaq09lQ9mloZx3E883aTFqpFH4Sd5z67pUI22bdlpnWHz1MS9nn8QtDU1M8D8=w1920-h901) 
+![](JobSite/JobSite/techs.png)
+
+
+# Screenshots
+
+
+![](JobSite/JobSite/login.jpg)
+
+![](JobSite/JobSite/profile.jpg)
+
+![](JobSite/JobSite/skill.jpg)
+
+![](JobSite/JobSite/jobs.jpg)
+
+![](JobSite/JobSite/people.jpg)
+
 
 
